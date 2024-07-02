@@ -14,9 +14,6 @@ const Home = () => {
             <Feature/>
             <Gallery/>
             <Map />
-            <Footer />
-            
-          
         </div>
 
     )

@@ -28,10 +28,11 @@ const Header = () => {
                 </div>
                 <nav className="hidden md:flex gap-3 lg:gap-[3rem] lg:items-center lg:justify-between">
                     <Link to="/" className="text-white hover:text-[#2d2c2c]">Home</Link>
-                    <Link to="/university" className="text-white">University</Link>
-                    <Link to="/administration" className="text-white">Administration</Link>
-                    <Link to="/schemes" className="text-white ">Schemes</Link>
-                    <Link to="/distance-education" className="text-white">Distance Education</Link>
+                    <Link to="/about" className="text-white">University</Link>
+                    <Link to="/administrative" className="text-white">Administration</Link>
+                    <Link to="/contact" className="text-white ">Schemes</Link>
+                    <Link to="/gallery" className="text-white">Distance Education</Link>
+                    <Link to="/notice" className="text-white">Notice Board</Link>
                 </nav>
                 <div className="md:hidden">
                     <button onClick={toggleNav} className="focus:outline-none">
@@ -42,10 +43,10 @@ const Header = () => {
             {navOpen && (
                 <nav className="md:hidden bg-red-700">
                     <Link to="/" className="text-white hover:text-white">Home</Link>
-                    <Link to="/university" className="text-white hover:text-white">University</Link>
-                    <Link to="/administration" className="text-white hover:text-white">Administration</Link>
-                    <Link to="/schemes" className="text-white hover:text-white">Schemes</Link>
-                    <Link to="/distance-education" className="text-white hover:text-white">Distance Education</Link>
+                    <Link to="/about" className="text-white hover:text-white">University</Link>
+                    <Link to="/administrative" className="text-white hover:text-white">Administration</Link>
+                    <Link to="/contact" className="text-white hover:text-white">Schemes</Link>
+                    <Link to="/gallery" className="text-white hover:text-white">Distance Education</Link>
                 </nav>
             )}
         </header>

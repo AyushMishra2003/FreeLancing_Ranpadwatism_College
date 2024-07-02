@@ -5,6 +5,12 @@ import Header from './component/Header'
 import Popup from './component/Popup'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import About from './page/AboutUs'
+import Footer from './component/Footer'
+import AdministrativePage from './page/Administratice'
+import ContactPage from './page/ContactPage'
+import Gallery from './page/Gallery'
+import NoticeBoard from './page/NoticeBoard'
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -17,9 +23,14 @@ import 'aos/dist/aos.css'
       <Header/>
        <Routes>
            <Route  path='/' element={<Home/>}/>
+           <Route path='/about' element={<About/>}/>
+           <Route path='/administrative' element={<AdministrativePage/>}/>
+           <Route path='/contact' element={<ContactPage/>}/>
+           <Route path='/gallery' element={<Gallery/>}/>
+           <Route path='/notice' element={<NoticeBoard/>}/>
        </Routes>
        <Popup/>
-   
+       <Footer/>
     </div>
   )
 }

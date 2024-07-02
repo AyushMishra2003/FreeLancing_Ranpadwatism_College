@@ -14,4 +14,9 @@
   .feature-card {
     animation: upDown 2s ease-in-out infinite;
   }
+
+  .typewriter {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+  }
   
