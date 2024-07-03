@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineZoomIn } from 'react-icons/ai'; // Example of using AiOutlineZoomIn icon
 
 import gallery1 from '../assets/gallery/p1.jpeg';
@@ -18,6 +18,11 @@ import gallery14 from '../assets/gallery/p14.jpeg';
 import gallery15 from '../assets/gallery/p15.jpeg';
 import gallery16 from '../assets/gallery/p16.jpeg';
 
+import gallery17 from '../assets/gal1.jpg';
+import gallery18 from   '../assets/gal2.jpg';
+import gallery19 from '../assets/gal3.jpg';
+import gallery20 from '../assets/gal4.jpg';
+
 const images = [
     gallery1,
     gallery2,
@@ -25,18 +30,25 @@ const images = [
     gallery4,
     gallery5,
     gallery7,
+    gallery17,
     gallery8,
     gallery9,
     gallery10,
+    gallery18,
     gallery11,
     gallery12,
     gallery13,
     gallery14,
     gallery15,
     gallery16,
+    gallery19,
+    gallery20
 ];
 
 const Gallery = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     const [modalImage, setModalImage] = useState(null);
 
     const openModal = (src) => {
@@ -103,6 +115,8 @@ const Gallery = () => {
                     </div>
                 </div>
             )}
+
+            
         </div>
     );
 };

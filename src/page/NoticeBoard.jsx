@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaDownload } from 'react-icons/fa';
 import notice1 from '../assets/notice1.jpg';
 import notice2 from '../assets/notice2.jpg';
@@ -29,6 +29,9 @@ const notices = [
 ];
 
 const NoticeBoard = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Notice Board</h1>
@@ -60,7 +63,7 @@ const NoticeBoard = () => {
                   <a
                     href={notice.pdf}
                     download
-                    className="text-blue-500 hover:text-blue-700 flex items-center justify-center"
+                    className="text-teal-600 hover:text-blue-700 flex items-center justify-center"
                   >
                     <FaDownload className="mr-2" />
                     Download

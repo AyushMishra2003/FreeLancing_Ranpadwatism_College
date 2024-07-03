@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { MdEmail } from "react-icons/md";
 
 const ContactPage = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     return (
         <div className='bg-main my-8 flex flex-col items-center justify-center w-[100%] pb-[2rem] gap-[2rem]'>
             <div className='xl:p-[1.8rem] flex flex-col lg:flex-row justify-center w-fit overflow-x-hidden items-center'>
@@ -32,7 +35,7 @@ const ContactPage = () => {
                             <p className='text-[0.82rem] font-semibold pl-1 tracking-wider'>MESSAGE</p>
                             <textarea name="Message" placeholder='Message' className='h-[5rem] w-full resize-none p-2 outline-none rounded-[3.5px] bg-white text-black border border-black'></textarea>
                         </div>
-                        <button className='p-[0.5rem] px-[2rem] text-white rounded-[0.2rem] bg-[#5B31EE] w-fit hover:bg-red-5000 hover:text-red hover:font-semibold transition-all duration-300'>Send Message</button>
+                        <button className='p-[0.5rem] px-[2rem] text-white rounded-[0.2rem] bg-teal-600 w-fit hover:bg-red-5000 hover:text-red hover:font-semibold transition-all duration-300'>Send Message</button>
                     </form>
                 </div>
                 <div className=''>
@@ -49,15 +52,15 @@ const ContactPage = () => {
             </div>
             <div className='flex gap-[2rem] flex-col lg:flex-row justify-between w-[95vw] sm:w-[60vw] md:w-[70vw] items-center'>
                 <Link target='_blank' to={"https://www.google.com/maps/place/Atal+Innovation+Center+(AIC+Office)/@25.2610349,82.9903649,17z/data=!3m1!4b1!4m6!3m5!1s0x398e337df3462881:0xb80d8ab74bfef3e5!8m2!3d25.2610349!4d82.9929398!16s%2Fg%2F11j489qh4l?hl=en&entry=ttu"} className='w-[15rem] flex flex-col gap-[0.3rem] items-center'>
-                    <Link className='p-[0.8rem] rounded-[5rem] bg-[#5B31EE]'><FaLocationDot className='text-[1.5rem] text-white' /></Link>
+                    <Link className='p-[0.8rem] rounded-[5rem] bg-teal-600'><FaLocationDot className='text-[1.5rem] text-white' /></Link>
                     <p className='text-center text-black text-[0.95rem]'><span className='text-[1.2rem] font-semibold tracking-wide'>Address: </span>रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय इंद्रपुर, शिवपुर, वाराणसी पिन कोड - 221003 </p>
                 </Link>
                 <div className='w-[15rem] flex flex-col gap-[0.3rem] items-center'>
-                    <Link className='p-[0.8rem] rounded-[5rem] bg-[#5B31EE]'><FaPhoneAlt className='text-[1.5rem] text-white' /></Link>
+                    <Link className='p-[0.8rem] rounded-[5rem] bg-teal-600'><FaPhoneAlt className='text-[1.5rem] text-white' /></Link>
                     <p className='text-center text-black'><span className='text-[1.2rem] font-semibold tracking-wide'>Phone: </span>+91 9415810978</p>
                 </div>
                 <div className='w-[15rem] flex flex-col gap-[0.3rem] items-center'>
-                    <Link className='p-[0.8rem] rounded-[5rem] bg-[#5B31EE]'><MdEmail className='text-[1.5rem] text-white' /></Link>
+                    <Link className='p-[0.8rem] rounded-[5rem] bg-teal-600'><MdEmail className='text-[1.5rem] text-white' /></Link>
                     <p className='text-center text-black'><span className='text-[1.2rem] font-semibold tracking-wide'>Email: </span>ranipadmawati1992@gmail.com</p>
                 </div>
             </div>

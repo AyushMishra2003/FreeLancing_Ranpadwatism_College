@@ -21,11 +21,7 @@ const useFeatureData=[
     },
     {
         "img":image4,
-        "title":"Examanination"
-    },
-    {
-        "img":image5,
-        "title":"Result"
+        "title":"Examanination and result"
     },
     {
         "img":image6,

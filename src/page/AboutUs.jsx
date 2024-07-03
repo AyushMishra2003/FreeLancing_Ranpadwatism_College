@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import about from '../assets/aboutus.jpg';
 import image1 from '../assets/gallery/p1.jpeg';
 import image2 from '../assets/gallery/p2.jpeg';
@@ -10,6 +10,9 @@ import image7 from '../assets/gallery/p7.jpeg';
 import image8 from '../assets/gallery/p8.jpeg';
 
 const About = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     return (
         <div className='text-black flex flex-col items-center justify-center gap-4 pb-20 pt-8 w-full bg-white'>
             <p className='text-[2.4rem] text-orange-700 md:text-[3rem] font-mono font-bold text-center'>

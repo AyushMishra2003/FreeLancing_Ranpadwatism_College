@@ -11,6 +11,8 @@ import AdministrativePage from './page/Administratice'
 import ContactPage from './page/ContactPage'
 import Gallery from './page/Gallery'
 import NoticeBoard from './page/NoticeBoard'
+import Academic from './page/Academic'
+import ResultList from './page/Result'
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -28,6 +30,8 @@ import NoticeBoard from './page/NoticeBoard'
            <Route path='/contact' element={<ContactPage/>}/>
            <Route path='/gallery' element={<Gallery/>}/>
            <Route path='/notice' element={<NoticeBoard/>}/>
+           <Route path='/academic' element={<Academic/>}/>
+           <Route path='/result' element={<ResultList/>}/>
        </Routes>
        <Popup/>
        <Footer/>

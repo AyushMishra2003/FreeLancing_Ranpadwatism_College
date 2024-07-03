@@ -13,7 +13,7 @@ import { IoMdMail } from "react-icons/io";
 
 import { Link } from 'react-router-dom'
 import { FaLocationDot } from 'react-icons/fa6';
-import logo from '../assets/headerImage/logo1.jpg'
+import logo from '../assets/headerImage/logo1.png'
 
 
 const Footer = () => {
@@ -30,33 +30,31 @@ const Footer = () => {
             <div className='flex  relative flex-col xl:flex-row p-[2.5rem_1rem] md:p-[2.5_5rem] gap-8 xl:justify-around'>
                 <div className='flex flex-col gap-2'>
                     <div className='mb-3'><img className='w-[5rem]' alt="" src={logo} /></div>
-                    <p className='leading-6 xl:w-[23rem] w-full text-[#C5C5C5]'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate non molestiae suscipit iste deleniti pariatur impedit nesciunt cumque modi, iure delectus est eligendi doloremque totam! Nemo eaque maxime quos, obcaecati, id iusto consequuntur in nulla reiciendis voluptatibus dolor saepe accusamus nobis harum natus suscipit? Ad saepe neque maxime similique deserunt!.</p>
-                    {/* <div className='flex gap-4 mt-3'>
-                        <Link to={"/"} target='blank' className='text-[20px]'><BsLinkedin /></Link>
-                        <Link to={"https://www.facebook.com/envirfoods/"} target='blank'   className='text-[20px]'><BsFacebook /></Link>
-                        <Link to={"/"}  className='text-[20px]'><BsWhatsapp /></Link>
-                        <Link to={"https://www.instagram.com/envirfoods?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="} target='blank' className='text-[20px]'><BsInstagram /></Link>
-                        <Link  to={"/"} className='text-[20px]'><BsTwitter /></Link>
-                    </div> */}
+                    <p className='leading-6 xl:w-[23rem] w-full text-[#C5C5C5]'>रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय की स्थापना स्वर्गीय पंडित कृष्ण मोहन ठाकुर ने भारतीय संस्कृति और संस्कृत भाषा को बढ़ावा देने और संरक्षित करने के लिए 1981 में नेपाली खपरा, वाराणसी में की थी। इस महाविद्यालय की स्थापना कामेश्वर सिंह संस्कृत विश्वविद्यालय, दरभंगा, बिहार के तत्कालीन कुलपति प्रो. जयमंत मिश्रा की अध्यक्षता में हुई थी।</p>
+                    <div className='flex gap-4 mt-3'>
+                        <Link to={"/"} target='blank' className='text-[20px]'><BsLinkedin  className='text-white'/></Link>
+                        <Link to={"https://www.facebook.com/envirfoods/"} target='blank'   className='text-[20px]'><BsFacebook className='text-white' /></Link>
+                        <Link to={"/"}  className='text-[20px]'><BsWhatsapp  className='text-white'/></Link>
+                        <Link to={"https://www.instagram.com/envirfoods?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="} target='blank' className='text-[20px]'><BsInstagram className='text-white'/></Link>
+                        <Link  to={"/"} className='text-[20px]'><BsTwitter className='text-white' /></Link>
+                    </div>
                 </div>
                 <div className='flex flex-col justify-between gap-8  md:gap-6 md:flex-row xl:gap-[2rem] '>
                     <div className='flex flex-col w-[80vw] md:w-[60%] gap-8 sm:flex-row sm:justify-between md:gap-6 lg:gap-7'>
                         <div className='w-[80vw] sm:w-[50%] md:w-[14rem]'>
                             <div>
-                                <p className='text-[1.09rem] font-[600]'>KP Metals Pvt Ltd</p>
+                                <p className='text-[1.09rem] font-[600]'>रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</p>
                                 <p className='w-[80vw] sm:w-[80%] md:w-[12rem] lg:w-[15rem] m-[9px_0] h-[3.4px] bg-[#ffff] rounded-md'></p>
                             </div>
                             <div className='flex flex-col gap-4 mt-6 text-[#C5C5C5] '>
-                                <Link to={'/KP_METALS'} className={listStyle}><MdKeyboardDoubleArrowRight />Home</Link>
-                                {/* <Link to={'/'} className={listStyle}><MdKeyboardDoubleArrowRight />Company</Link> */}
+                                <Link to={'/'} className={listStyle}><MdKeyboardDoubleArrowRight />Home</Link>
                                 <Link to={'/about'} className={listStyle}><MdKeyboardDoubleArrowRight />About</Link>
 
                                 {/* <Link to={'/coming'} className={listStyle}><MdKeyboardDoubleArrowRight />Latest Research</Link> */}
-                                <Link to={'/contact'} className={listStyle}><MdKeyboardDoubleArrowRight />Teacher</Link>
-                                <Link to={'/contact'} className={listStyle}><MdKeyboardDoubleArrowRight />Course</Link>
-                                <Link to={'/contact'} className={listStyle}><MdKeyboardDoubleArrowRight />Image</Link>
-                                <Link to={'/contact'} className={listStyle}><MdKeyboardDoubleArrowRight />Video Gallery</Link>
                                 <Link to={'/contact'} className={listStyle}><MdKeyboardDoubleArrowRight />Contact</Link>
+                                <Link to={'/administrative'} className={listStyle}><MdKeyboardDoubleArrowRight />Administration</Link>
+                                <Link to={'/gallery'} className={listStyle}><MdKeyboardDoubleArrowRight />Gallery</Link>
+                                <Link to={'/notice'} className={listStyle}><MdKeyboardDoubleArrowRight />Notice Board</Link>
 
                             </div>
                         </div>

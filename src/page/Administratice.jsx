@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import vcImage from '../assets/adminstrative/p1.jpg'; // Replace with actual images
@@ -20,6 +20,9 @@ import faculty13Image from '../assets/adminstrative/p17.jpeg'; // Replace with a
 import faculty14Image from '../assets/adminstrative/p18.jpg'; // Replace with actu
 
 const AdministrativePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
     const facultyData = [
         {name:"Dr. Kamlesh Jha",title:"Incharge Principal",image:faculty1Image},
         { name: 'Dr. Prakash Kumar Thakur', title: 'Associate Professor- Economics', image: faculty2Image },
