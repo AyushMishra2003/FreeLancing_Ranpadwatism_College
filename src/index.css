@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body{
+  display: flex;
+  flex-direction: column;
+  overflow-x:hidden;
+  background-color: white;
+  color: black;
+}
+
+
 @keyframes upDown {
     0%, 100% {
       transform: translateY(0);
