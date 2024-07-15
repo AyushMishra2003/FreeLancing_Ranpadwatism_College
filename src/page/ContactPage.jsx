@@ -57,7 +57,7 @@ const ContactPage = () => {
                 </Link>
                 <div className='w-[15rem] flex flex-col gap-[0.3rem] items-center'>
                     <Link className='p-[0.8rem] rounded-[5rem] bg-teal-600'><FaPhoneAlt className='text-[1.5rem] text-white' /></Link>
-                    <p className='text-center text-black'><span className='text-[1.2rem] font-semibold tracking-wide'>Phone: </span>+91 9415810978</p>
+                    <p className='text-center text-black'><span className='text-[1.2rem] font-semibold tracking-wide'>Phone: </span>+91 9415697363</p>
                 </div>
                 <div className='w-[15rem] flex flex-col gap-[0.3rem] items-center'>
                     <Link className='p-[0.8rem] rounded-[5rem] bg-teal-600'><MdEmail className='text-[1.5rem] text-white' /></Link>

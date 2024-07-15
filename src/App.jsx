@@ -13,6 +13,7 @@ import Gallery from './page/Gallery'
 import NoticeBoard from './page/NoticeBoard'
 import Academic from './page/Academic'
 import ResultList from './page/Result'
+import ComingSoon from './page/ComingSoon'
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -32,6 +33,7 @@ import ResultList from './page/Result'
            <Route path='/notice' element={<NoticeBoard/>}/>
            <Route path='/academic' element={<Academic/>}/>
            <Route path='/result' element={<ResultList/>}/>
+           <Route path='/comingSoon' element={<ComingSoon/>}/>
        </Routes>
        <Popup/>
        <Footer/>

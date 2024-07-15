@@ -45,7 +45,7 @@ const Header = () => {
                             <Link to="/gallery" className="text-white hover:text-[#2d2c2c] no-underline">Gallery</Link>
                             <Link to="/notice" className="text-white hover:text-[#2d2c2c] no-underline">Notice Board</Link>
                             <Link to="/academic" className="text-white hover:text-[#2d2c2c] no-underline">Academic</Link>
-                            <Link to="/result" className="text-white hover:text-[#2d2c2c] no-underline">Result</Link>
+                            <Link to="/comingSoon" className="text-white hover:text-[#2d2c2c] no-underline">Result</Link>
                         </div>
                         <div className="md:hidden ml-auto">
                             <button onClick={toggleNav} className="focus:outline-none">
@@ -64,7 +64,7 @@ const Header = () => {
                             <Link to="/gallery" className="text-white hover:text-[#2d2c2c] no-underline">Gallery</Link>
                             <Link to="/notice" className="text-white hover:text-[#2d2c2c] no-underline">Notice Board</Link>
                             <Link to="/academic" className="text-white hover:text-[#2d2c2c] no-underline">Academic</Link>
-                            <Link to="/result" className="text-white hover:text-[#2d2c2c] no-underline">Result</Link>
+                            <Link to="/comingSoon" className="text-white hover:text-[#2d2c2c] no-underline">Result</Link>
                         </div>
                     </nav>
                 )}

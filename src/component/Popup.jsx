@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Fragment } from 'react';
 import image from '../assets/popumImage.webp'
+import img1 from '../assets/notifcation1.jpg'
 const Popup = () => {
   const [show, setShow] = useState(false);
 
@@ -29,7 +30,7 @@ const Popup = () => {
                 <li>Course 2: Admin Date - 2022-02-01, Website Link</li>
                 <li>Course 3: Admin Date - 2022-03-01, Website Link</li>
               </ul> */}
-           <img src={image} alt="" className="w-full max-h-[30rem] object-cover" />
+           <img src={img1} alt="" className="w-full max-h-[30rem] object-cover" />
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleClose}

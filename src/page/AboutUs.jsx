@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import about from '../assets/aboutus.jpg';
-import image1 from '../assets/gallery/p1.jpeg';
-import image2 from '../assets/gallery/p2.jpeg';
+import image5 from '../assets/gallery/p5.jpeg';
 import image3 from '../assets/gallery/p3.jpeg';
 import image4 from '../assets/gallery/p4.jpeg';
-import image5 from '../assets/gallery/p5.jpeg';
-import image6 from '../assets/gallery/p6.jpeg';
-import image7 from '../assets/gallery/p7.jpeg';
 import image8 from '../assets/gallery/p8.jpeg';
 
 const About = () => {
@@ -26,8 +22,8 @@ const About = () => {
                     </h1>
                     <img src={about} alt="College Photo 1" className='mb-4 w-80 h-60 object-cover lg:w-[600px] lg:h-[400px]' />
                     <div className='relative pl-6 ml-6 border-l md:border-none w-full'>
-                        <div className='w-full md:absolute md:block hidden h-[0.1px] bg-black top-[-10px]'></div>
-                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full md:top-[-16px] md:left-3 absolute left-[-0.47rem] top-[0.5rem]'></div>
+                        <div className='w-full md:absolute h-[0.1px] bg-black top-[-10px] md:block hidden'></div>
+                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full absolute left-[-0.47rem] top-[0.5rem] md:top-[-16px] md:left-3'></div>
                         <h2 className='text-[1.25rem] font-bold text-orange-700'>
                             स्थापना और इतिहास
                         </h2>
@@ -37,8 +33,8 @@ const About = () => {
                     </div>
                     <img src={image5} alt="College Photo 2" className='mt-4 mb-4 w-80 h-60 object-cover lg:w-[600px] lg:h-[400px]' />
                     <div className='relative pl-6 ml-6 border-l md:mt-10 md:border-none w-full'>
-                        <div className='w-full md:absolute md:block hidden h-[0.1px] bg-black top-[-10px]'></div>
-                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full md:top-[-16px] md:left-3 absolute left-[-0.47rem] top-[0.5rem]'></div>
+                        <div className='w-full md:absolute h-[0.1px] bg-black top-[-10px] md:block hidden'></div>
+                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full absolute left-[-0.47rem] top-[0.5rem] md:top-[-16px] md:left-3'></div>
                         <h2 className='text-[1.25rem] font-bold text-orange-700'>
                             स्थानांतरण
                         </h2>
@@ -48,8 +44,8 @@ const About = () => {
                     </div>
                     <img src={image3} alt="College Photo 3" className='mt-4 mb-4 w-80 h-60 object-cover lg:w-[600px] lg:h-[400px]' />
                     <div className='relative pt-10 pl-6 ml-6 border-l md:border-none w-full'>
-                        <div className='w-full md:absolute md:block hidden h-[0.1px] bg-black top-7'></div>
-                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full md:top-[21.5px] md:left-3 absolute left-[-0.47rem] top-[3rem]'></div>
+                        <div className='w-full md:absolute h-[0.1px] bg-black top-7 md:block hidden'></div>
+                        <div className='w-[0.9rem] h-[0.9rem] bg-gradient-to-r from-orange-700 to-white rounded-full absolute left-[-0.47rem] top-[3rem] md:top-[21.5px] md:left-3'></div>
                         <h2 className='text-[1.25rem] font-bold text-orange-700'>
                             संबद्धता और मान्यता
                         </h2>
@@ -69,7 +65,7 @@ const About = () => {
                             संस्कृत और संस्कृति का संरक्षण
                         </h2>
                         <p className='text-[0.95rem] pt-2'>
-                            भारतीय संस्कृति और संस्कृत भाषा के प्रति निरंतर समर्पित यह महाविद्यालय अपनी नींव से लेकर वर्तमान स्वरूप तक प्रहरी के रूप में प्राचार्य डॉ. वेदानन्द झा के कुशल नेतृत्व में सफलता की ओर अग्रसर है।
+                            भारतीय संस्कृति और संस्कृत भाषा के प्रति निरंतर समर्पित यह महाविद्यालय अपनी नींव से लेकर वर्तमान स्वरूप तक प्रहरी के रूप में प्राचार्य डॉ. कमलेश झा के कुशल नेतृत्व में सफलता की ओर अग्रसर है।
                         </p>
                     </div>
                     <img src={image4} alt="College Photo 4" className='mt-4 mb-4 w-80 h-60 object-cover lg:w-[600px] lg:h-[400px]' />
