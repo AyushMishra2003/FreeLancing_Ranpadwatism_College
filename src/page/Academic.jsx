@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const courses = [
   {
@@ -19,6 +19,9 @@ const courses = [
 ];
 
 const CourseList = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold text-center mb-4">पाठ्यक्रम</h1>

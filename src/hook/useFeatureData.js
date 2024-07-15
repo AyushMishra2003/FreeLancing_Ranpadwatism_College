@@ -9,24 +9,28 @@ import image7 from '../assets/fea7.webp'
 const useFeatureData=[
     {
         "img":image1,
-        "title":"Admission"
+        "title":"Admission",
+        "link":"/comingSoon"
     },  
     {
         "img":image2,
-        "title":"Acdemic"
+        "title":"Acdemic",
+        "link":"/academic"
     },
     {
         "img":image3,
-        "title":"Student Welfare"
+        "title":"Student Welfare",
+        "link":"/comingSoon"
     },
     {
         "img":image4,
         "title":"Examanination and result",
-        "to":"comingSoon"
+        "link":"/comingSoon"
     },
     {
         "img":image6,
-        "title":"LIbrary"
+        "title":"LIbrary",
+        "link":"/comingSoon"
     },
 ]
 
