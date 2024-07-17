@@ -14,6 +14,9 @@ import NoticeBoard from './page/NoticeBoard'
 import Academic from './page/Academic'
 import ResultList from './page/Result'
 import ComingSoon from './page/ComingSoon'
+import ArchyaDetails from './page/CourseDetails/Archaya'
+import ShastriDetails from './page/CourseDetails/Shastri'
+import Shastri1 from './page/CourseDetails/Shastri1'
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -34,6 +37,8 @@ import ComingSoon from './page/ComingSoon'
            <Route path='/academic' element={<Academic/>}/>
            <Route path='/result' element={<ResultList/>}/>
            <Route path='/comingSoon' element={<ComingSoon/>}/>
+           <Route path='/cousre/archya' element={<ArchyaDetails/>}/>
+           <Route path='/cousre/shastri' element={<Shastri1/>}/>
        </Routes>
        <Popup/>
        <Footer/>

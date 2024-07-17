@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const courses = [
   {
     name: "Prak Shastri (Intermediate)",
     duration: "2 years",
     link: "link-to-prak-shastri.pdf",
+    to:"/comingSoon"
   },
   {
     name: "Shastri (B. A.)",
     duration: "3 years",
     link: "link-to-shastri.pdf",
+    to:"/cousre/shastri"
   },
   {
     name: "Acharya (M. A.)",
     duration: "2 years",
     link: "link-to-acharya.pdf",
+        to:"/cousre/archya"
   },
 ];
 
@@ -35,13 +39,12 @@ const CourseList = () => {
                 <p>{course.duration}</p>
               </div>
             </div>
-            <a
-              href={course.link}
+            <Link
+              to={course.to}
               className="mt-2 sm:mt-0 text-white hover:text-red-500 transition-all duration-300 animation-updown"
-              download
             >
               विवरण
-            </a>
+            </Link>
           </div>
         ))}
       </div>
