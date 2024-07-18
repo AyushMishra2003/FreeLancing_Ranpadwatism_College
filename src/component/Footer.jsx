@@ -55,6 +55,7 @@ const Footer = () => {
                                 <Link to={'/administrative'} className={listStyle}><MdKeyboardDoubleArrowRight />Administration</Link>
                                 <Link to={'/gallery'} className={listStyle}><MdKeyboardDoubleArrowRight />Gallery</Link>
                                 <Link to={'/notice'} className={listStyle}><MdKeyboardDoubleArrowRight />Notice Board</Link>
+                                <Link to={'/library'} className={listStyle}><MdKeyboardDoubleArrowRight />Library</Link>
 
                             </div>
                         </div>

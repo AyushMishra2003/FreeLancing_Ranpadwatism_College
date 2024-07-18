@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { saveAs } from 'file-saver';
 import { AiOutlineDownload } from 'react-icons/ai';
-
+import brochureArchya from '../../../public/Prospectus_2024_2025_ps.pdf';
 
 const courses = [
     { 
     
-        id: 1, name: 'Acharya (Navya Vyakaranam)', department: 'Vyakarana', brochure: 'brochure-navya-vyakaranam.pdf' },
+        id: 1, name: 'Acharya (Navya Vyakaranam)', department: 'Vyakarana', brochure: brochureArchya },
     { 
     
           id: 2, name: 'Acharya (Sahityam)', department: 'Sahitya', brochure: 'brochure-sahityam.pdf' },
@@ -21,12 +21,15 @@ const courses = [
   ];
   
 
-const archyaCourse = { id: 1, name: 'Archya', department: '', brochure: 'brochure-archya.pdf' };
+const archyaCourse = { id: 1, name: 'Archya', department: '', brochure: brochureArchya };
 
 const CourseDetails = () => {
-  const downloadBrochure = (fileName) => {
-    saveAs(`/path/to/brochures/${fileName}`);
+  const downloadBrochure = (brochureUrl) => {
+    saveAs(brochureUrl);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
 
   return (
     <div className="container mx-auto p-4 pb-10">

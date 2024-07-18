@@ -17,6 +17,7 @@ import ComingSoon from './page/ComingSoon'
 import ArchyaDetails from './page/CourseDetails/Archaya'
 import ShastriDetails from './page/CourseDetails/Shastri'
 import Shastri1 from './page/CourseDetails/Shastri1'
+import Library from './page/Library/Library'
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -30,6 +31,7 @@ import Shastri1 from './page/CourseDetails/Shastri1'
        <Routes>
            <Route  path='/' element={<Home/>}/>
            <Route path='/about' element={<About/>}/>
+           <Route path='/library' element={<Library/>}/>
            <Route path='/administrative' element={<AdministrativePage/>}/>
            <Route path='/contact' element={<ContactPage/>}/>
            <Route path='/gallery' element={<Gallery/>}/>

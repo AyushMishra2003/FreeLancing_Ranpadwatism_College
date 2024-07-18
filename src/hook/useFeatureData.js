@@ -30,7 +30,7 @@ const useFeatureData=[
     {
         "img":image6,
         "title":"LIbrary",
-        "link":"/comingSoon"
+        "link":"/library"
     },
 ]
 
