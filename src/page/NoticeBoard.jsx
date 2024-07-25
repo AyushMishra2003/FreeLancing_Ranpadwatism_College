@@ -7,6 +7,8 @@ import notice4 from '../assets/notice/n4.jpg';
 import notice5 from '../assets/notice/n6.jpeg';
 import notice7 from '../assets/notice/notice7.pdf';
 import notice8 from '../assets/notice3.jpg';
+import notice9 from '../assets/notice/notice8.jpg';
+import notice10 from '../assets/notice/notice9.pdf'; 
 
 const notices = [
   {
@@ -57,6 +59,20 @@ const notices = [
     date: '2024-07-15',
     image: notice8,
     pdf: notice8,
+  },
+  {
+    sno: 8,
+    heading: 'Advertisement Sahitya',
+    date: '2024-07-25',
+    image: notice9,
+    pdf: notice9,
+  },
+  {
+    sno: 9,
+    heading: 'Advertisement Related Pdf',
+    date: '2024-07-25',
+    image: notice10,
+    pdf: notice10,
   },
   // Add more notices as needed
 ];
