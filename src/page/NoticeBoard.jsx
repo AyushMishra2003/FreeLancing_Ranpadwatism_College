@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaDownload } from 'react-icons/fa';
+import { FaDownload, FaFilePdf } from 'react-icons/fa'; // Import PDF icon
 import notice1 from '../assets/notice/n1.jpg';
 import notice2 from '../assets/notice/n2.jpg';
 import notice3 from '../assets/notice/n3.jpg';
@@ -9,6 +9,9 @@ import notice7 from '../assets/notice/notice7.pdf';
 import notice8 from '../assets/notice3.jpg';
 import notice9 from '../assets/notice/notice8.jpg';
 import notice10 from '../assets/notice/notice9.pdf'; 
+import notice11 from '../assets/notice/notice10.pdf';
+import notice12 from '../assets/notice/notice11.pdf';
+import notice13 from '../assets/notice/notice12.pdf';
 
 const notices = [
   {
@@ -74,17 +77,38 @@ const notices = [
     image: notice10,
     pdf: notice10,
   },
-  // Add more notices as needed
+  {
+    sno: 10,
+    heading: 'Vacancy of Sahitya Last Date Extended',
+    date: '2024-07-31',
+    image: notice11,
+    pdf: notice11,
+  },
+  {
+    sno: 11,
+    heading: 'Vacancy of Sahitya Last Date Extended',
+    date: '2024-07-31',
+    image: notice12,
+    pdf: notice12,
+  },
+  {
+    sno: 12,
+    heading:'Advertisement No-02/2024-25  Related Essential Information',
+    date: '2024-08-24',
+    image: notice13,
+    pdf: notice13,
+  },
 ];
 
 const NoticeBoard = () => {
-  const [filteredNotices, setFilteredNotices] = useState(notices);
+  const [filteredNotices, setFilteredNotices] = useState([]);
 
   useEffect(() => {
+    const sortedNotices = notices.sort((a, b) => new Date(b.date) - new Date(a.date));
+    setFilteredNotices(sortedNotices);
     window.scrollTo(0, 0);
   }, []);
 
-  // Handle filtering based on date or heading
   const handleFilter = (type, value) => {
     let filtered = [...notices];
 
@@ -96,6 +120,7 @@ const NoticeBoard = () => {
       );
     }
 
+    filtered = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     setFilteredNotices(filtered);
   };
 
@@ -112,7 +137,6 @@ const NoticeBoard = () => {
             className="ml-2 p-1 border border-black rounded"
           >
             <option value="All Dates">All Dates</option>
-            {/* Assuming dates can be dynamically fetched from notices */}
             {Array.from(new Set(notices.map(notice => notice.date))).map((date, index) => (
               <option key={index} value={date}>
                 {date}
@@ -120,7 +144,7 @@ const NoticeBoard = () => {
             ))}
           </select>
         </div>
-        <div>
+        <div className='flex items-center justify-center gap-4'>
           <label className="font-bold">Filter by Heading:</label>
           <input
             type="text"
@@ -153,15 +177,19 @@ const NoticeBoard = () => {
             ) : (
               filteredNotices.map((notice, index) => (
                 <tr key={index} className="border-b">
-                  <td className="text-center py-2">{notice.sno}</td>
+                  <td className="text-center py-2">{index + 1}</td>
                   <td className="text-center py-2">{notice.heading}</td>
                   <td className="text-center py-2">{notice.date}</td>
                   <td className="text-center py-2">
-                    <img
-                      src={notice.image}
-                      alt={notice.heading}
-                      className="object-cover w-24 h-24 mx-auto rounded-lg"
-                    />
+                    {notice.image.endsWith('.pdf') ? (
+                      <FaFilePdf className="text-red-600 text-4xl mx-auto" />
+                    ) : (
+                      <img
+                        src={notice.image}
+                        alt={notice.heading}
+                        className="object-cover w-24 h-24 mx-auto rounded-lg"
+                      />
+                    )}
                   </td>
                   <td className="text-center py-2">
                     <a

@@ -32,7 +32,7 @@ const CourseList = () => {
       <div className="space-y-4">
         {courses.map((course, index) => (
           <div key={index} className="bg-teal-600 text-white p-4 rounded-md shadow-md flex flex-col sm:flex-row sm:justify-between">
-            <div className="flex items-center mb-2 sm:mb-0">
+            <div className="flex text-[#fff] items-center mb-2 sm:mb-0">
               <span className="text-lg font-bold mr-2">{index + 1}. </span>
               <div>
                 <h2 className="text-xl font-semibold">{course.name}</h2>

@@ -18,6 +18,14 @@ import ArchyaDetails from './page/CourseDetails/Archaya'
 import ShastriDetails from './page/CourseDetails/Shastri'
 import Shastri1 from './page/CourseDetails/Shastri1'
 import Library from './page/Library/Library'
+import ProductItem from './page/Product/Product'
+import MainSlider from './page/TestSlide'
+import SingleProduct from './page/Product/SingleProduct'
+import TestFooter from './page/Footer'
+import ContactPageTest from './page/TestLogin'
+import TestHeader from './page/TestHeader'
+
+
  const App = () => {
   useEffect(() => {
     AOS.init({
@@ -29,7 +37,9 @@ import Library from './page/Library/Library'
     <div className='overflow-x-hidden'>
       <Header/>
        <Routes>
-           <Route  path='/' element={<Home/>}/>
+        {/* test footer, singleProduct,slider,produt */}
+           {/* <Route  path='/' element={<TestFooter/>}/> */}
+           <Route path='/' element={<Home/>} />
            <Route path='/about' element={<About/>}/>
            <Route path='/library' element={<Library/>}/>
            <Route path='/administrative' element={<AdministrativePage/>}/>

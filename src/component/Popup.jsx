@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Fragment } from 'react';
 import image from '../assets/popumImage.webp'
-import img1 from '../assets/notifcation1.jpg'
+import img1 from '../assets/notice/n4.jpg'
 const Popup = () => {
   const [show, setShow] = useState(false);
 
