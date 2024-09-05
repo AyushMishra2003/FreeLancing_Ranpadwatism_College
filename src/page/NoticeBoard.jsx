@@ -12,6 +12,8 @@ import notice10 from '../assets/notice/notice9.pdf';
 import notice11 from '../assets/notice/notice10.pdf';
 import notice12 from '../assets/notice/notice11.pdf';
 import notice13 from '../assets/notice/notice12.pdf';
+import { useDispatch } from 'react-redux';
+import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
 
 const notices = [
   {
@@ -102,6 +104,25 @@ const notices = [
 
 const NoticeBoard = () => {
   const [filteredNotices, setFilteredNotices] = useState([]);
+  const dispatch=useDispatch()
+
+  const fetchNotice = async () => {
+    console.log("Fetching results...");
+    const response = await dispatch(fetchPostsByCategory(3));
+    console.log(response);
+  };
+
+  useEffect(() => {
+    fetchNotice();
+  }, [dispatch]);
+
+  if (status === "loading") {
+    return <p className='h-[100vh] flex items-center justify-center'>Loading....</p>;
+  }
+
+
+
+
 
   useEffect(() => {
     const sortedNotices = notices.sort((a, b) => new Date(b.date) - new Date(a.date));
