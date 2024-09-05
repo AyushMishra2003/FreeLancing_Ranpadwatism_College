@@ -1,216 +1,123 @@
 import React, { useEffect, useState } from 'react';
-import { FaDownload, FaFilePdf } from 'react-icons/fa'; // Import PDF icon
-import notice1 from '../assets/notice/n1.jpg';
-import notice2 from '../assets/notice/n2.jpg';
-import notice3 from '../assets/notice/n3.jpg';
-import notice4 from '../assets/notice/n4.jpg';
-import notice5 from '../assets/notice/n6.jpeg';
-import notice7 from '../assets/notice/notice7.pdf';
-import notice8 from '../assets/notice3.jpg';
-import notice9 from '../assets/notice/notice8.jpg';
-import notice10 from '../assets/notice/notice9.pdf'; 
-
-const notices = [
-  {
-    sno: 1,
-    heading: 'Guest Teacher Veda, Yoga Shikshak, Bhasha Sikshak Vacancy -',
-    date: '2024-07-01',
-    image: notice1,
-    pdf: notice1,
-  },
-  {
-    sno: 2,
-    heading: 'ADMISSION OPEN FOR SESSION 2024-25-19-05-2024',
-    date: '2024-07-02',
-    image: notice2,
-    pdf: notice2,
-  },
-  {
-    sno: 3,
-    heading: 'International Yoga Day-20-06-2024',
-    date: '2024-06-20',
-    image: notice3,
-    pdf: notice3,
-  },
-  {
-    sno: 4,
-    heading: 'Recruitment for Session 2024-25-28-06-2024',
-    date: '2024-06-28',
-    image: notice4,
-    pdf: notice4,
-  },
-  {
-    sno: 5,
-    heading: 'Recruitment for Session 2024-25-28-06-2024',
-    date: '2024-06-28',
-    image: notice5,
-    pdf: notice5,
-  },
-  {
-    sno: 6,
-    heading: 'Related to Recruitment for session 2024-25',
-    date: '2024-06-30',
-    image: notice7,
-    pdf: notice7,
-  },
-  {
-    sno: 7,
-    heading: 'Recruitment Result',
-    date: '2024-07-15',
-    image: notice8,
-    pdf: notice8,
-  },
-  {
-    sno: 8,
-    heading: 'Advertisement Sahitya',
-    date: '2024-07-25',
-    image: notice9,
-    pdf: notice9,
-  },
-  {
-    sno: 9,
-    heading: 'Advertisement Related Pdf',
-    date: '2024-07-25',
-    image: notice10,
-    pdf: notice10,
-  },
-  // Add more notices as needed
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
 
 const NoticeBoard = () => {
-  const [filteredNotices, setFilteredNotices] = useState([]);
-  const dispatch=useDispatch()
+  const { notice, status } = useSelector((state) => state.postData); // Assuming state has 'notice' and 'status'
+  const dispatch = useDispatch();
 
-  const fetchNotice = async () => {
-    console.log("Fetching results...");
-    const response = await dispatch(fetchPostsByCategory(3));
-    console.log(response);
+  const [filteredNotices, setFilteredNotices] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('');
+
+  // Fetch notice when the component is mounted
+  const fetchNoticesList = async () => {
+    await dispatch(fetchPostsByCategory(3)); // Adjust fetch action as needed
   };
 
+  // Format the date from 'YYYYMMDD' to 'dd-mm-yyyy'
+  const formatDate = (dateString) => {
+    const year = dateString.slice(0, 4);
+    const month = dateString.slice(4, 6);
+    const day = dateString.slice(6, 8);
+    return `${day}-${month}-${year}`;
+  };
+
+  // Convert formatted date (dd-mm-yyyy) to a comparable format
+  const toComparableDate = (dateString) => {
+    const [day, month, year] = dateString.split('-');
+    return `${year}${month}${day}`; // YYYYMMDD format for comparison
+  };
+
+  // Function to handle viewing the file
+  const handleViewFile = (fileUrl) => {
+    const newWindow = window.open(fileUrl, '_blank');
+    if (fileUrl.endsWith('.pdf')) {
+      newWindow.onload = () => {
+        newWindow.print();
+      };
+    }
+  };
+
+  // Filter and sort notices based on the search title
   useEffect(() => {
-    fetchNotice();
+    let filtered = notice ? [...notice] : []; // Create a shallow copy of the array
+
+    // Filter by title
+    if (searchTitle) {
+      filtered = filtered.filter(item =>
+        item.acf.title.toLowerCase().includes(searchTitle.toLowerCase())
+      );
+    }
+
+    // Sort by date (latest first)
+    filtered = filtered.slice().sort((a, b) => {
+      const dateA = toComparableDate(formatDate(a.acf.date));
+      const dateB = toComparableDate(formatDate(b.acf.date));
+      return dateB.localeCompare(dateA); // Sort in descending order
+    });
+
+    setFilteredNotices(filtered);
+  }, [searchTitle, notice]);
+
+  useEffect(() => {
+    fetchNoticesList();
   }, [dispatch]);
 
   if (status === "loading") {
     return <p className='h-[100vh] flex items-center justify-center'>Loading....</p>;
   }
 
-
-
-
-
-  useEffect(() => {
-    const sortedNotices = notices.sort((a, b) => new Date(b.date) - new Date(a.date));
-    setFilteredNotices(sortedNotices);
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Sort notices by sno in descending order
-  const sortNotices = (notices) => {
-    return [...notices].sort((a, b) => b.sno - a.sno);
-  };
-
-  const handleFilter = (type, value) => {
-    let filtered = [...notices];
-
-    if (type === 'date' && value !== 'All Dates') {
-      filtered = notices.filter(notice => notice.date === value);
-    } else if (type === 'heading') {
-      filtered = notices.filter(notice =>
-        notice.heading.toLowerCase().includes(value.toLowerCase())
-      );
-    }
-
-    setFilteredNotices(filtered);
-  };
-
-  // Sort notices initially
-  useEffect(() => {
-    setFilteredNotices(sortNotices(notices));
-  }, []);
-
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Notice Board</h1>
-
-      {/* Filter Section */}
-      <div className="flex justify-center mb-4">
-        <div className="mr-4">
-          <label className="font-bold">Filter by Date:</label>
-          <select
-            onChange={e => handleFilter('date', e.target.value)}
-            className="ml-2 p-1 border border-black rounded"
-          >
-            <option value="All Dates">All Dates</option>
-            {Array.from(new Set(notices.map(notice => notice.date))).map((date, index) => (
-              <option key={index} value={date}>
-                {date}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className='flex items-center justify-center gap-4'>
-          <label className="font-bold">Filter by Heading:</label>
+    <div className="container mx-auto sm:p-4">
+      {/* Filters */}
+      <div className="flex flex-col items-center gap-4 mb-4 sm:flex-row sm:justify-between">
+        <div className="w-full sm:w-auto">
+          <label className="font-bold">Filter by Title:</label>
           <input
             type="text"
-            onChange={e => handleFilter('heading', e.target.value)}
-            className="ml-2 p-1 border border-black rounded"
-            placeholder="Search by heading..."
+            onChange={e => setSearchTitle(e.target.value)}
+            className="w-full p-2 mt-1 border border-gray-300 rounded shadow-sm sm:mt-0"
+            placeholder="Search by title..."
           />
         </div>
       </div>
 
-      {/* Notice Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white table-auto">
-          <thead className="border border-black text-black">
-            <tr>
-              <th className="py-2 text-center">S.No</th>
-              <th className="py-2 text-center">Heading</th>
-              <th className="py-2 text-center">Date</th>
-              <th className="py-2 text-center">Image</th>
-              <th className="py-2 text-center">Download PDF</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredNotices.length === 0 ? (
-              <tr>
-                <td colSpan="5" className="text-center py-4">
-                  No notices found.
-                </td>
-              </tr>
-            ) : (
-              filteredNotices.map((notice, index) => (
-                <tr key={index} className="border-b">
-                  <td className="text-center py-2">{index + 1}</td>
-                  <td className="text-center py-2">{notice.heading}</td>
-                  <td className="text-center py-2">{notice.date}</td>
-                  <td className="text-center py-2">
-                    {notice.image.endsWith('.pdf') ? (
-                      <FaFilePdf className="text-red-600 text-4xl mx-auto" />
-                    ) : (
-                      <img
-                        src={notice.image}
-                        alt={notice.heading}
-                        className="object-cover w-24 h-24 mx-auto rounded-lg"
-                      />
-                    )}
-                  </td>
-                  <td className="text-center py-2">
-                    <a
-                      href={notice.pdf}
-                      download
-                      className="text-teal-600 hover:text-blue-700 flex items-center justify-center"
-                    >
-                      <FaDownload className="mr-2" />
-                      Download
-                    </a>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+      {/* Display filtered results or no data found */}
+      <div className="min-h-[40vh] space-y-3">
+        {filteredNotices.length > 0 ? (
+          filteredNotices?.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between p-3 bg-gray-100 rounded-md shadow-md"
+            >
+              <div>
+                <a href="#" className="font-bold text-teal-600 hover:underline">
+                  {item.acf.title}
+                </a>
+                <p className="mt-2 text-sm text-gray-900">
+                  Posted on: {formatDate(item.acf.date)}
+                </p>
+              </div>
+              <div className="flex items-center min-w-[3rem]  justify-end">
+                {item.custom_file && (
+                  <button
+                    onClick={() => handleViewFile(item.custom_file)}
+                    className="text-blue-500 hover:underline"
+                  >
+                    View
+                  </button>
+                )}
+                {item.isNew && (
+                  <span className="text-sm text-red-500">NEW</span>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-lg text-gray-500">No data found</p>
+          </div>
+        )}
       </div>
     </div>
   );

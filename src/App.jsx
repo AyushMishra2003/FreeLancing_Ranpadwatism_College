@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route,Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './page/Home'
 import Header from './component/Header'
 import Popup from './component/Popup'
@@ -17,16 +17,16 @@ import ComingSoon from './page/ComingSoon'
 import ArchyaDetails from './page/CourseDetails/Archaya'
 import ShastriDetails from './page/CourseDetails/Shastri'
 import Shastri1 from './page/CourseDetails/Shastri1'
-import Library from './page/Library/Library'
 import ProductItem from './page/Product/Product'
 import MainSlider from './page/TestSlide'
 import SingleProduct from './page/Product/SingleProduct'
 import TestFooter from './page/Footer'
 import ContactPageTest from './page/TestLogin'
 import TestHeader from './page/TestHeader'
+import LibraryPage from './page/Library'
 
 
- const App = () => {
+const App = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Animation duration in milliseconds
@@ -35,25 +35,25 @@ import TestHeader from './page/TestHeader'
   }, []);
   return (
     <div className='overflow-x-hidden'>
-      <Header/>
-       <Routes>
+      <Header />
+      <Routes>
         {/* test footer, singleProduct,slider,produt */}
-           {/* <Route  path='/' element={<TestFooter/>}/> */}
-           <Route path='/' element={<Home/>} />
-           <Route path='/about' element={<About/>}/>
-           <Route path='/library' element={<Library/>}/>
-           <Route path='/administrative' element={<AdministrativePage/>}/>
-           <Route path='/contact' element={<ContactPage/>}/>
-           <Route path='/gallery' element={<Gallery/>}/>
-           <Route path='/notice' element={<NoticeBoard/>}/>
-           <Route path='/academic' element={<Academic/>}/>
-           <Route path='/result' element={<ResultList/>}/>
-           <Route path='/comingSoon' element={<ComingSoon/>}/>
-           <Route path='/cousre/archya' element={<ArchyaDetails/>}/>
-           <Route path='/cousre/shastri' element={<Shastri1/>}/>
-       </Routes>
-       <Popup/>
-       <Footer/>
+        {/* <Route  path='/' element={<TestFooter/>}/> */}
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/library' element={<LibraryPage />} />
+        <Route path='/administrative' element={<AdministrativePage />} />
+        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path='/notice' element={<NoticeBoard />} />
+        <Route path='/academic' element={<Academic />} />
+        <Route path='/result' element={<ResultList />} />
+        <Route path='/comingSoon' element={<ComingSoon />} />
+        <Route path='/cousre/archya' element={<ArchyaDetails />} />
+        <Route path='/cousre/shastri' element={<Shastri1 />} />
+      </Routes>
+      <Popup />
+      <Footer />
     </div>
   )
 }

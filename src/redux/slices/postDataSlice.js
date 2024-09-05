@@ -27,12 +27,25 @@ export const fetchMainNotice = createAsyncThunk(
   }
 );
 
+// Define async thunk to fetch the gallery data
+export const fetchGallery = createAsyncThunk(
+  'postData/fetchGallery',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get('https://dashboard.ranipadmawatiasm.in/wp-json/wp/v2/pages/250');
+      return response.data; // Assuming gallery data is an object
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // Initial state for different post categories
 const initialState = {
   academic: [],
   administrative: [],
   faculty: [],
-  gallery: [],
+  gallery: {}, // Update gallery to be an object
   library: [],
   notice: [],
   result: [],
@@ -62,9 +75,6 @@ const postDataSlice = createSlice({
           case 10:
             state.faculty = action.payload.data;
             break;
-          case 8:
-            state.gallery = action.payload.data;
-            break;
           case 7:
             state.library = action.payload.data;
             break;
@@ -90,6 +100,17 @@ const postDataSlice = createSlice({
         state.mainNotice = action.payload;
       })
       .addCase(fetchMainNotice.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || action.error.message;
+      })
+      .addCase(fetchGallery.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchGallery.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.gallery = action.payload; // Update to handle object data
+      })
+      .addCase(fetchGallery.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload || action.error.message;
       });

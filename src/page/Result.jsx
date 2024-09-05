@@ -6,14 +6,58 @@ const ResultList = () => {
   const { result, status } = useSelector((state) => state.postData);
   const dispatch = useDispatch();
 
-  // State to keep track of which result is being viewed
-  const [viewedResult, setViewedResult] = useState(null);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('');
 
+  // Fetch posts when the component is mounted
   const fetchResult = async () => {
-    console.log("Fetching results...");
-    const response = await dispatch(fetchPostsByCategory(5));
-    console.log(response);
+    await dispatch(fetchPostsByCategory(5));
   };
+
+  // Format the date from 'YYYYMMDD' to 'dd-mm-yyyy'
+  const formatDate = (dateString) => {
+    const year = dateString.slice(0, 4);
+    const month = dateString.slice(4, 6);
+    const day = dateString.slice(6, 8);
+    return `${day}-${month}-${year}`;
+  };
+
+  // Convert formatted date (dd-mm-yyyy) to a comparable format
+  const toComparableDate = (dateString) => {
+    const [day, month, year] = dateString.split('-');
+    return `${year}${month}${day}`; // YYYYMMDD format for comparison
+  };
+
+  // Function to handle viewing the file
+  const handleViewFile = (fileUrl) => {
+    const newWindow = window.open(fileUrl, '_blank');
+    if (fileUrl.endsWith('.pdf')) {
+      newWindow.onload = () => {
+        newWindow.print();
+      };
+    }
+  };
+
+  // Filter and sort results based on the search title
+  useEffect(() => {
+    let filtered = result ? [...result] : []; // Create a shallow copy of the array
+
+    // Filter by title
+    if (searchTitle) {
+      filtered = filtered.filter(item =>
+        item.acf.title.toLowerCase().includes(searchTitle)
+      );
+    }
+
+    // Sort by date (latest first)
+    filtered = filtered.slice().sort((a, b) => {
+      const dateA = toComparableDate(formatDate(a.acf.date));
+      const dateB = toComparableDate(formatDate(b.acf.date));
+      return dateB.localeCompare(dateA); // Sort in descending order
+    });
+
+    setFilteredResults(filtered);
+  }, [searchTitle, result]);
 
   useEffect(() => {
     fetchResult();
@@ -24,84 +68,57 @@ const ResultList = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex items-center mb-4">
-        <h1 className="text-2xl font-bold">Results</h1>
-        <div className="flex-grow border-t-2 border-gray-300 mx-2"></div>
-      </div>
-      <div className="space-y-2">
-        {result?.map((item, index) => (
-          <div
-            key={index}
-            className={`flex justify-between items-center p-2 bg-gray-100 rounded-md shadow-md ${
-              item.isNew ? 'animate-slideIn' : ''
-            }`}
-          >
-            <div>
-              <a href="#" className="text-teal-600 hover:underline font-bold">
-                {item.acf.title}
-              </a>
-              <p className="text-sm text-gray-500">Posted on: {item.acf.date}</p>
-            </div>
-            <div className="flex items-center">
-              <button 
-                onClick={() => setViewedResult(item)} 
-                className="text-blue-500 hover:underline mr-4"
-              >
-                View
-              </button>
-              {item.isNew && (
-                <span className="text-red-500 text-sm">NEW</span>
-              )}
-            </div>
-          </div>
-        ))}
+    <div className="container py-4 mx-auto sm:p-4">
+      {/* Filters */}
+      <div className="flex flex-col items-center gap-4 mb-4 sm:flex-row sm:justify-between">
+        <div className="w-full sm:w-auto">
+          <label className="font-bold">Filter by Title:</label>
+          <input
+            type="text"
+            onChange={e => setSearchTitle(e.target.value)}
+            className="w-full p-2 mt-1 border border-gray-300 rounded shadow-sm sm:mt-0"
+            placeholder="Search by title..."
+          />
+        </div>
       </div>
 
-      {/* Modal for viewing the file */}
-      {viewedResult && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="relative bg-white rounded-lg shadow-lg w-11/12 h-4/5">
-            {/* Close button */}
-            <button
-              className="absolute top-2 right-2 text-2xl font-bold text-gray-600 hover:text-gray-800"
-              onClick={() => setViewedResult(null)}
+      {/* Display filtered results or no data found */}
+      <div className="min-h-[40vh] space-y-3">
+        {filteredResults.length > 0 ? (
+          filteredResults?.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between p-3 bg-gray-100 border rounded-md shadow-md"
             >
-              &times;
-            </button>
-
-            <div className="p-4">
-              <h2 className="text-xl font-bold">{viewedResult.acf.title}</h2>
-              <p className="text-sm text-gray-500">Posted on: {viewedResult.acf.date}</p>
-
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold">View File</h3>
-                {viewedResult.custom_file ? (
-                  <div className="h-full">
-                    {/* Display the file */}
-                    <iframe
-                      src={viewedResult.custom_file}
-                      title="File Preview"
-                      className="w-full h-96 border border-gray-300 rounded-md"
-                    ></iframe>
-
-                    {/* Download Button */}
-                    <div className="mt-4">
-                      <a href={viewedResult.custom_file} download>
-                        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
-                          Download File
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                ) : (
-                  <p>No file available for preview and download</p>
+              <div>
+                <a href="#" className="font-bold text-teal-600 hover:underline">
+                  {item.acf.title}
+                </a>
+                <p className="mt-2 text-sm text-gray-900">
+                  Posted on: {formatDate(item.acf.date)}
+                </p>
+              </div>
+              <div className="flex items-center">
+                {item.custom_file && (
+                  <button
+                    onClick={() => handleViewFile(item.custom_file)}
+                    className="text-blue-500  hover:underline"
+                  >
+                    View
+                  </button>
+                )}
+                {item.isNew && (
+                  <span className="text-sm text-red-500">NEW</span>
                 )}
               </div>
             </div>
+          ))
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-lg text-gray-500">No data found</p>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,52 +1,79 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-const courses = [
-  {
-    name: "Prak Shastri (Intermediate)",
-    duration: "2 years",
-    link: "link-to-prak-shastri.pdf",
-    to:"/comingSoon"
-  },
-  {
-    name: "Shastri (B. A.)",
-    duration: "3 years",
-    link: "link-to-shastri.pdf",
-    to:"/cousre/shastri"
-  },
-  {
-    name: "Acharya (M. A.)",
-    duration: "2 years",
-    link: "link-to-acharya.pdf",
-        to:"/cousre/archya"
-  },
-];
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPostsByCategory } from '../redux/slices/postDataSlice'; // Adjust path as needed
 
 const CourseList = () => {
+  const dispatch = useDispatch();
+  const { academic, status } = useSelector((state) => state.postData);
+  const [searchTitle, setSearchTitle] = useState('');
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-}, [])
+  }, []);
+
+  useEffect(() => {
+    // Fetch academic data when component mounts
+    const fetchData = async () => {
+      await dispatch(fetchPostsByCategory(11)); // Adjust category ID if needed
+    };
+    fetchData();
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Filter courses based on searchTitle
+    if (academic) {
+      let filtered = academic.filter(course =>
+        course.acf.title.toLowerCase().includes(searchTitle.toLowerCase())
+      );
+      setFilteredCourses(filtered);
+    }
+  }, [searchTitle, academic]);
+
+  if (status === "loading") {
+    return <p className='h-[75vh] flex items-center justify-center'>Loading....</p>;
+  }
+
+  const handleViewFile = (fileUrl) => {
+    window.open(fileUrl, '_blank');
+  };
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-4">पाठ्यक्रम</h1>
+    <div className="container p-4 mx-auto">
+      <h1 className="mb-4 text-2xl font-bold text-center">पाठ्यक्रम</h1>
+
+      {/* Search Filter */}
+      <div className="mb-4">
+        <label className="font-bold">Search by Title:</label>
+        <input
+          type="text"
+          onChange={e => setSearchTitle(e.target.value)}
+          className="w-full p-2 mt-1 border border-gray-300 rounded shadow-sm"
+          placeholder="Search by title..."
+        />
+      </div>
+
       <div className="space-y-4">
-        {courses.map((course, index) => (
-          <div key={index} className="bg-teal-600 text-white p-4 rounded-md shadow-md flex flex-col sm:flex-row sm:justify-between">
-            <div className="flex text-[#fff] items-center mb-2 sm:mb-0">
-              <span className="text-lg font-bold mr-2">{index + 1}. </span>
-              <div>
-                <h2 className="text-xl font-semibold">{course.name}</h2>
-                <p>{course.duration}</p>
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course, index) => (
+            <div key={index} className="flex flex-col p-4 text-white bg-teal-600 rounded-md shadow-md sm:flex-row sm:justify-between">
+              <div className="flex text-[#fff] items-center mb-2 sm:mb-0">
+                <div>
+                  <h2 className="text-xl font-semibold">{course.acf.title}</h2>
+                  <p>{course.acf.year} Years</p>
+                </div>
               </div>
+              <button
+                onClick={() => handleViewFile(course.acf.custom_file)}
+                className="mt-2 text-white transition-all duration-300 sm:mt-0 hover:text-red-500 animation-updown"
+              >
+                विवरण
+              </button>
             </div>
-            <Link
-              to={course.to}
-              className="mt-2 sm:mt-0 text-white hover:text-red-500 transition-all duration-300 animation-updown"
-            >
-              विवरण
-            </Link>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No courses found</p>
+        )}
       </div>
     </div>
   );
