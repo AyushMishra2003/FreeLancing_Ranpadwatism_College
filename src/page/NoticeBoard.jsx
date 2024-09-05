@@ -9,11 +9,6 @@ import notice7 from '../assets/notice/notice7.pdf';
 import notice8 from '../assets/notice3.jpg';
 import notice9 from '../assets/notice/notice8.jpg';
 import notice10 from '../assets/notice/notice9.pdf'; 
-import notice11 from '../assets/notice/notice10.pdf';
-import notice12 from '../assets/notice/notice11.pdf';
-import notice13 from '../assets/notice/notice12.pdf';
-import { useDispatch } from 'react-redux';
-import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
 
 const notices = [
   {
@@ -79,27 +74,7 @@ const notices = [
     image: notice10,
     pdf: notice10,
   },
-  {
-    sno: 10,
-    heading: 'Vacancy of Sahitya Last Date Extended',
-    date: '2024-07-31',
-    image: notice11,
-    pdf: notice11,
-  },
-  {
-    sno: 11,
-    heading: 'Vacancy of Sahitya Last Date Extended',
-    date: '2024-07-31',
-    image: notice12,
-    pdf: notice12,
-  },
-  {
-    sno: 12,
-    heading:'Advertisement No-02/2024-25  Related Essential Information',
-    date: '2024-08-24',
-    image: notice13,
-    pdf: notice13,
-  },
+  // Add more notices as needed
 ];
 
 const NoticeBoard = () => {
@@ -130,6 +105,11 @@ const NoticeBoard = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Sort notices by sno in descending order
+  const sortNotices = (notices) => {
+    return [...notices].sort((a, b) => b.sno - a.sno);
+  };
+
   const handleFilter = (type, value) => {
     let filtered = [...notices];
 
@@ -141,9 +121,13 @@ const NoticeBoard = () => {
       );
     }
 
-    filtered = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     setFilteredNotices(filtered);
   };
+
+  // Sort notices initially
+  useEffect(() => {
+    setFilteredNotices(sortNotices(notices));
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
