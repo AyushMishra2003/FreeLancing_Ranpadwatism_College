@@ -64,7 +64,7 @@ const CourseList = () => {
                 </div>
               </div>
               <button
-                onClick={() => handleViewFile(course.acf.custom_file)}
+                onClick={() => handleViewFile(course.custom_file)}
                 className="mt-2 text-white transition-all duration-300 sm:mt-0 hover:text-red-500 animation-updown"
               >
                 विवरण
