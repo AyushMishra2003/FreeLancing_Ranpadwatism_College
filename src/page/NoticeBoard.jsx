@@ -8,24 +8,19 @@ const NoticeBoard = () => {
 
   const [filteredNotices, setFilteredNotices] = useState([]);
   const [searchTitle, setSearchTitle] = useState('');
+  const [filterDate, setFilterDate] = useState('');
 
   // Fetch notice when the component is mounted
   const fetchNoticesList = async () => {
     await dispatch(fetchPostsByCategory(3)); // Adjust fetch action as needed
   };
 
-  // Format the date from 'YYYYMMDD' to 'dd-mm-yyyy'
-  const formatDate = (dateString) => {
+  // Convert 'YYYYMMDD' format to 'yyyy-mm-dd' format for comparison with input type="date"
+  const formatDateForComparison = (dateString) => {
     const year = dateString.slice(0, 4);
     const month = dateString.slice(4, 6);
     const day = dateString.slice(6, 8);
-    return `${day}-${month}-${year}`;
-  };
-
-  // Convert formatted date (dd-mm-yyyy) to a comparable format
-  const toComparableDate = (dateString) => {
-    const [day, month, year] = dateString.split('-');
-    return `${year}${month}${day}`; // YYYYMMDD format for comparison
+    return `${year}-${month}-${day}`; // Output in 'yyyy-mm-dd' format
   };
 
   // Function to handle viewing the file
@@ -38,7 +33,7 @@ const NoticeBoard = () => {
     }
   };
 
-  // Filter and sort notices based on the search title
+  // Filter and sort notices based on the search title and date
   useEffect(() => {
     let filtered = notice ? [...notice] : []; // Create a shallow copy of the array
 
@@ -49,15 +44,23 @@ const NoticeBoard = () => {
       );
     }
 
+    // Filter by selected date
+    if (filterDate) {
+      filtered = filtered.filter(item => {
+        const noticeDate = formatDateForComparison(item.acf.date); // Convert notice date to 'yyyy-mm-dd'
+        return noticeDate === filterDate; // Compare with the date selected by the user
+      });
+    }
+
     // Sort by date (latest first)
     filtered = filtered.slice().sort((a, b) => {
-      const dateA = toComparableDate(formatDate(a.acf.date));
-      const dateB = toComparableDate(formatDate(b.acf.date));
+      const dateA = formatDateForComparison(a.acf.date);
+      const dateB = formatDateForComparison(b.acf.date);
       return dateB.localeCompare(dateA); // Sort in descending order
     });
 
     setFilteredNotices(filtered);
-  }, [searchTitle, notice]);
+  }, [searchTitle, filterDate, notice]);
 
   useEffect(() => {
     fetchNoticesList();
@@ -80,6 +83,17 @@ const NoticeBoard = () => {
             placeholder="Search by title..."
           />
         </div>
+
+        {/* Date Filter */}
+        <div>
+          <label className="font-bold">Filter by Date:</label>
+          <input
+            type="date"
+            value={filterDate}
+            onChange={e => setFilterDate(e.target.value)}
+            className="w-full p-2 mt-1 border border-gray-300 rounded shadow-sm"
+          />
+        </div>
       </div>
 
       {/* Display filtered results or no data found */}
@@ -95,10 +109,10 @@ const NoticeBoard = () => {
                   {item.acf.title}
                 </a>
                 <p className="mt-2 text-sm text-gray-900">
-                  Posted on: {formatDate(item.acf.date)}
+                  Posted on: {formatDateForComparison(item.acf.date)} {/* Display formatted date */}
                 </p>
               </div>
-              <div className="flex items-center min-w-[3rem]  justify-end">
+              <div className="flex items-center min-w-[3rem] justify-end">
                 {item.custom_file && (
                   <button
                     onClick={() => handleViewFile(item.custom_file)}

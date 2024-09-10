@@ -43,19 +43,32 @@ const AdministrativePage = () => {
     <div className="flex flex-col items-center p-4 text-black bg-gradient-to-b from-white to-blue-100">
       <h1 className="mb-8 text-3xl font-bold text-orange-700">Administrative Team</h1>
 
-      <div className="flex flex-col items-center justify-around w-full mb-8 md:flex-row">
-        {administrative?.map((member, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <img
-              src={member?.custom_file}
-              alt={member?.acf?.name}
-              className="object-cover w-40 h-40 mb-4 border-4 border-orange-700 rounded-full"
-            />
-            <p className="text-xl font-semibold">{member.acf.name}</p>
-            <p className="text-center text-md">{member.acf.designation}</p>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-wrap items-center justify-around w-full mb-8 lg:gap-0 gap-2">
+  {administrative?.map((member, index) => (
+    <div
+      key={index}
+      className="flex flex-col items-center justify-between w-80 p-4 border border-red-500"
+    >
+      <img
+        src={member?.custom_file}
+        alt={member?.acf?.name}
+        className="object-cover w-40 h-40 mb-4 border-4 border-orange-700 rounded-full"
+      />
+      {/* Name with wrapping */}
+      <p className="text-xl font-semibold text-center break-words">
+        {member.acf.name}
+      </p>
+      {/* Designation with wrapping */}
+      <p className="text-center text-md text-gray-600 break-words">
+        {member.acf.designation}
+      </p>
+    </div>
+  ))}
+    </div>
+
+
+
+
 
       <h2 className="mb-4 text-2xl font-bold text-orange-700">Our Faculty</h2>
       <AliceCarousel
