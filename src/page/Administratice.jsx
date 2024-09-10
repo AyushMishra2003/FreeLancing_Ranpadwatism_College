@@ -3,6 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css'; // Import AliceCarousel styles
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
+import { Helmet } from 'react-helmet';
 
 const AdministrativePage = () => {
   useEffect(() => {
@@ -41,13 +42,28 @@ const AdministrativePage = () => {
 
   return (
     <div className="flex flex-col items-center p-4 text-black bg-gradient-to-b from-white to-blue-100">
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Administrative team of Central Sanskrit University, including key roles and faculty members. Learn about the principal, vice-chancellor, registrar, and other administrative and faculty members of रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय."
+        />
+        <meta
+          name="keywords"
+          content="Administrative Team, Central Sanskrit University, Sanskrit College Administration, रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय, Principal, Vice-Chancellor, Registrar, Faculty Members"
+        />
+        <meta name="author" content="रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय" />
+        <title>Administrative Team | रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</title>
+      </Helmet>
+
       <h1 className="mb-8 text-3xl font-bold text-orange-700">Administrative Team</h1>
 
-    <div className="flex flex-wrap items-center justify-around w-full mb-8 lg:gap-0 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full mb-8">
   {administrative?.map((member, index) => (
     <div
       key={index}
-      className="flex flex-col items-center justify-between w-80 p-4 border border-red-500"
+      className="flex flex-col items-center justify-between p-4 border border-red-500"
     >
       <img
         src={member?.custom_file}
@@ -64,7 +80,8 @@ const AdministrativePage = () => {
       </p>
     </div>
   ))}
-    </div>
+</div>
+
 
 
 

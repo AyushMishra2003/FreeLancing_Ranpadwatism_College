@@ -4,6 +4,7 @@ import image5 from '../assets/gallery/p5.jpeg';
 import image3 from '../assets/gallery/p3.jpeg';
 import image4 from '../assets/gallery/p4.jpeg';
 import image8 from '../assets/gallery/p8.jpeg';
+import { Helmet } from 'react-helmet';
 
 const About = () => {
     useEffect(() => {
@@ -11,6 +12,16 @@ const About = () => {
     }, [])
     return (
         <div className='text-black flex flex-col items-center justify-center gap-4 pb-20 pt-8 w-full bg-white'>
+            <Helmet>
+        <title>About Us | रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</title>
+        <meta name="description" content="जानें रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय का इतिहास, स्थापना और उपलब्धियां। संस्कृत और भारतीय संस्कृति के संरक्षण के लिए समर्पित।" />
+        <meta name="keywords" content="रानी पद्मावती, संस्कृत महाविद्यालय, भारतीय संस्कृति, वाराणसी" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="About Us - रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय" />
+        <meta property="og:description" content="रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय का इतिहास और उपलब्धियां।" />
+        <meta property="og:url" content="https://ranipadmawatiasm.in/about" />
+        <meta property="og:type" content="website" />
+      </Helmet>
             <p className='text-[2.4rem] text-orange-700 md:text-[3rem] font-mono font-bold text-center'>
                 रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय
             </p>

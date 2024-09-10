@@ -24,6 +24,7 @@ import TestFooter from './page/Footer'
 import ContactPageTest from './page/TestLogin'
 import TestHeader from './page/TestHeader'
 import LibraryPage from './page/Library'
+import Video from './page/Video'
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
         <Route path='/administrative' element={<AdministrativePage />} />
         <Route path='/contact' element={<ContactPage />} />
         <Route path='/gallery' element={<Gallery />} />
+        <Route path='/video' element={<Video/>} />
         <Route path='/notice' element={<NoticeBoard />} />
         <Route path='/academic' element={<Academic />} />
         <Route path='/result' element={<ResultList />} />

@@ -25,7 +25,7 @@ const useFeatureData=[
     {
         "img":image4,
         "title":"Examanination and result",
-        "link":"/comingSoon"
+        "link":"/result"
     },
     {
         "img":image6,

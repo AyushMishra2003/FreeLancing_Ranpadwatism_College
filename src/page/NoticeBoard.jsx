@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
+import { Helmet } from 'react-helmet';
 
 const NoticeBoard = () => {
   const { notice, status } = useSelector((state) => state.postData); // Assuming state has 'notice' and 'status'
@@ -66,14 +67,34 @@ const NoticeBoard = () => {
     fetchNoticesList();
   }, [dispatch]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [])
+
   if (status === "loading") {
     return <p className='h-[100vh] flex items-center justify-center'>Loading....</p>;
   }
 
+
   return (
     <div className="container mx-auto sm:p-4">
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Stay updated with the latest notices and announcements from रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय. Find important notices related to academic schedules, events, and other updates."
+        />
+        <meta
+          name="keywords"
+          content="Notice Board, Academic Notices, रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय, College Announcements, Important Notices"
+        />
+        <meta name="author" content="रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय" />
+        <title>Notice Board | रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</title>
+      </Helmet>
+
       {/* Filters */}
-      <div className="flex flex-col items-center gap-4 mb-4 sm:flex-row sm:justify-between">
+      <div className="flex flex-col items-start gap-4 mb-4 sm:flex-row sm:justify-between ">
         <div className="w-full sm:w-auto">
           <label className="font-bold">Filter by Title:</label>
           <input
@@ -102,16 +123,19 @@ const NoticeBoard = () => {
           filteredNotices?.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-gray-100 rounded-md shadow-md"
+              className="flex items-center justify-between p-3 bg-teal-600 text-white rounded-md shadow-md"
             >
               <div>
-                <a href="#" className="font-bold text-teal-600 hover:underline">
+                <a href="#" className="font-bold text-white no-underline"
+                 onClick={() => handleViewFile(item.custom_file)}
+                >
                   {item.acf.title}
                 </a>
-                <p className="mt-2 text-sm text-gray-900">
+                <p className="mt-2 text-sm text-white">
                   Posted on: {formatDateForComparison(item.acf.date)} {/* Display formatted date */}
                 </p>
               </div>
+{/*               
               <div className="flex items-center min-w-[3rem] justify-end">
                 {item.custom_file && (
                   <button
@@ -124,7 +148,7 @@ const NoticeBoard = () => {
                 {item.isNew && (
                   <span className="text-sm text-red-500">NEW</span>
                 )}
-              </div>
+              </div> */}
             </div>
           ))
         ) : (

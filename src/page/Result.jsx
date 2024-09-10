@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsByCategory } from '../redux/slices/postDataSlice';
+import { Helmet } from 'react-helmet';
 
 const ResultList = () => {
   const { result, status } = useSelector((state) => state.postData);
@@ -69,6 +70,20 @@ const ResultList = () => {
 
   return (
     <div className="container py-4 mx-auto sm:p-4">
+       <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Check the latest results for various programs at रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय. Find academic performance updates for PG Diploma, Acharya, Shastri, and Prak Shastri courses."
+        />
+        <meta
+          name="keywords"
+          content="Results, Academic Results, रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय, PG Diploma Results, Acharya Results, Shastri Results, Prak Shastri Results"
+        />
+        <meta name="author" content="रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय" />
+        <title>Results | रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</title>
+      </Helmet>
       {/* Filters */}
       <div className="flex flex-col items-center gap-4 mb-4 sm:flex-row sm:justify-between">
         <div className="w-full sm:w-auto">

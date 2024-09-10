@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostsByCategory } from '../redux/slices/postDataSlice'; // Adjust path as needed
+import { Helmet } from 'react-helmet';
 
 const CourseList = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,20 @@ const CourseList = () => {
 
   return (
     <div className="container p-4 mx-auto">
+       <Helmet>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Explore the academic programs offered at रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय. Learn about our various courses including PG Diploma, Acharya, Shastri, and Prak Shastri programs."
+        />
+        <meta
+          name="keywords"
+          content="Academics, Sanskrit College Programs, रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय, PG Diploma, Acharya, Shastri, Prak Shastri"
+        />
+        <meta name="author" content="रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय" />
+        <title>Academics | रानी पद्मावती तारा योगतंत्र आदर्श संस्कृत महाविद्यालय</title>
+      </Helmet>
       <h1 className="mb-4 text-2xl font-bold text-center">पाठ्यक्रम</h1>
 
       {/* Search Filter */}
